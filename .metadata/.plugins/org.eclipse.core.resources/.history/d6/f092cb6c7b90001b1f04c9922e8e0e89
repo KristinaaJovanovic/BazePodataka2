@@ -1,0 +1,27 @@
+package kolokvijum;
+
+public class Program {
+
+	public static void main(String[] args) {
+		Glumac g=new Glumac(6, "Jason", "Statham", 1967);
+		
+		DBF.unesiGlumca(g);
+		
+		if(DBF.izmeniHonorar(1, 89000.00))
+			System.out.println("Uspesno smo izmenili honorar!");
+		else
+			System.out.println("Nismo uspesno izmenili honorar");
+		
+		if(DBF.obrisiFilm("Inception"))
+			System.out.println("Uspesno brisanje!");
+		else
+			System.out.println("Neuspesno brisanje!");
+		
+		DBF.prikaziFilm(3);
+		
+		
+		DBConnection.closeConnection();
+
+	}
+
+}

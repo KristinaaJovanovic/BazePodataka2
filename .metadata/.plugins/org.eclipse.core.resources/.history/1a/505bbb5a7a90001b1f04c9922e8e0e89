@@ -1,0 +1,15 @@
+package kolokvijum;
+
+public class Program {
+
+	public static void main(String[] args) {
+		Glumac g=new Glumac(6, "Jason", "Statham", 1967);
+		
+		DBF.unesiGlumca(g);
+		
+		
+		DBConnection.closeConnection();
+
+	}
+
+}

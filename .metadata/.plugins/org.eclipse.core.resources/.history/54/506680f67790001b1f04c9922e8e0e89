@@ -1,0 +1,31 @@
+package kolokvijum;
+
+import java.sql.*;
+
+public class DBF {
+	
+	public static void unesiGlumca(Glumac g) {
+		PreparedStatement pstmt=null;
+		
+		try {
+			pstmt=DBConnection.getConnection().prepareStatement("insert into glumac values(?, ?, ?, ?)");
+			pstmt.setInt(1, g.getIdg());
+			pstmt.setString(2, g.getIme());
+			pstmt.setString(3, g.getPrezime());
+			pstmt.setInt(4, g.getGodinaRodjenja());
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt!=null) {
+					pstmt.close();
+				}
+			}catch(Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+		
+		
+	}
+
+}

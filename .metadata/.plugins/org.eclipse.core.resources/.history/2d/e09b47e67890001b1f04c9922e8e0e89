@@ -1,0 +1,61 @@
+package kolokvijum;
+
+import java.sql.*;
+
+public class DBF {
+	
+	public static void unesiGlumca(Glumac g) {
+		PreparedStatement pstmt=null;
+		
+		try {
+			pstmt=DBConnection.getConnection().prepareStatement("insert into glumac values(?, ?, ?, ?)");
+			pstmt.setInt(1, g.getIdg());
+			pstmt.setString(2, g.getIme());
+			pstmt.setString(3, g.getPrezime());
+			pstmt.setInt(4, g.getGodinaRodjenja());
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt!=null) {
+					pstmt.close();
+				}
+			}catch(Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+		
+		
+	}
+	//ime filma
+	private static boolean izmeniHonorar(int idg, double honorar) {
+		boolean rez=false;
+		PreparedStatement pstmt=null;
+		
+		try {
+			pstmt=DBConnection.getConnection().prepareStatement("update glumi set honorar=? where idg=?");
+			pstmt.setDouble(1, honorar);
+			pstmt.setInt(2, idg);
+			pstmt.executeUpdate();
+			
+			rez=true;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt!=null) {
+					pstmt.close();
+				}
+			}catch(Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+		return rez;
+	}
+	
+	
+	
+	
+
+}
