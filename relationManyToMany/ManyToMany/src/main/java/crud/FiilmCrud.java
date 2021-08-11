@@ -75,5 +75,29 @@ public class FiilmCrud {
 				em.close();
 		}
 	}
+	
+	public void promeniZanr(Fiilm f, String zanr) {
+		EntityManager em=PersistenceUtil.getEntityManager();
+		EntityTransaction et=null;
+		
+		try {
+			et=em.getTransaction();
+			et.begin();
+			f=em.merge(f);
+			f.setZanr(zanr);
+			em.merge(f);
+			em.flush();
+			et.commit();
+		}catch(Exception e) {
+			e.printStackTrace();
+			if(et!=null)
+				et.rollback();
+		}finally {
+			if(em!=null && em.isOpen())
+				em.close();
+		}
+		
+		
+	}
 
 }

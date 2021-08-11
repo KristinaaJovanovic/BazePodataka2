@@ -77,12 +77,36 @@ public class GlavniProzor {
 		btn_brisanjeGlumca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TODO Napravi prozor za brisanje glumca
-				DBrisanjeGlumca dBrisanjeGlumca=new DBrisanjeGlumca();
+				DBrisanjeGlumca dBrisanjeGlumca=new DBrisanjeGlumca(frmGluma, true);
 				dBrisanjeGlumca.setVisible(true);
 			}
 		});
 		btn_brisanjeGlumca.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btn_brisanjeGlumca.setBounds(179, 183, 135, 31);
 		frmGluma.getContentPane().add(btn_brisanjeGlumca);
+		
+		JButton btn_promenaZanra = new JButton("Promena zanra");
+		btn_promenaZanra.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//TODO
+				DPromenaZanra dPromenaZanra=new DPromenaZanra();
+				dPromenaZanra.setVisible(true);
+			}
+		});
+		btn_promenaZanra.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btn_promenaZanra.setBounds(301, 17, 167, 31);
+		frmGluma.getContentPane().add(btn_promenaZanra);
+		
+		JButton btn_prikazGlumaca = new JButton("Prikazi Glumce");
+		btn_prikazGlumaca.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//TODO
+				DPrikazGlumaca dPrikazGlumaca=new DPrikazGlumaca();
+				dPrikazGlumaca.setVisible(true);
+			}
+		});
+		btn_prikazGlumaca.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btn_prikazGlumaca.setBounds(301, 77, 167, 31);
+		frmGluma.getContentPane().add(btn_prikazGlumaca);
 	}
 }

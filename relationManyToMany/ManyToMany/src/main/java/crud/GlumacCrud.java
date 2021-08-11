@@ -81,10 +81,10 @@ public class GlumacCrud {
 		return glumci;
 	}
 	
-	public void deleteGlumac(Glumac g) {
+	public boolean deleteGlumac(Glumac g) {
 		EntityManager em=PersistenceUtil.getEntityManager();
 		EntityTransaction et=null;
-		
+		boolean rezultat=false;
 		try {
 			et=em.getTransaction();
 			et.begin();
@@ -100,6 +100,8 @@ public class GlumacCrud {
 			em.flush();
 			et.commit();
 			
+			rezultat=true;
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 			if(et!=null)
@@ -108,6 +110,7 @@ public class GlumacCrud {
 			if(em!=null && em.isOpen())
 				em.close();
 		}
+		return rezultat;
 	}
 
 }
