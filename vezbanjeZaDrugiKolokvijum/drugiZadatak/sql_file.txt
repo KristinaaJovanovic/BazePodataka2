@@ -1,0 +1,70 @@
+drop table if exists Prodaja;
+
+drop table if exists Prodavac;
+
+drop table if exists Proizvod;
+
+drop table if exists Vrsta;
+
+/*==============================================================*/
+/* Table: Prodaja                                               */
+/*==============================================================*/
+create table Prodaja
+(
+   idp                  int not null,
+   sifp                 int not null,
+   datum                varchar(10) not null,
+   kolicina             numeric(6,2) not null,
+   primary key (idp, sifp)
+);
+
+/*==============================================================*/
+/* Table: Prodavac                                              */
+/*==============================================================*/
+create table Prodavac
+(
+   idp                  int not null auto_increment,
+   ime                  varchar(30) not null,
+   prezime              varchar(30) not null,
+   adresa               varchar(30) not null,
+   primary key (idp)
+);
+
+/*==============================================================*/
+/* Table: Proizvod                                              */
+/*==============================================================*/
+create table Proizvod
+(
+   sifp                 int not null auto_increment,
+   idv                  int not null,
+   naziv                varchar(30) not null,
+   cena                 numeric(6,2) not null,
+   primary key (sifp)
+);
+
+/*==============================================================*/
+/* Table: Vrsta                                                 */
+/*==============================================================*/
+create table Vrsta
+(
+   idv                  int not null auto_increment,
+   nazv                 varchar(30) not null,
+   primary key (idv)
+);
+
+alter table Prodaja add constraint FK_Prodaja foreign key (idp)
+      references Prodavac (idp) on delete restrict on update restrict;
+
+alter table Prodaja add constraint FK_Prodaja2 foreign key (sifp)
+      references Proizvod (sifp) on delete restrict on update restrict;
+
+alter table Proizvod add constraint FK_pripada foreign key (idv)
+      references Vrsta (idv) on delete restrict on update restrict;
+
+insert into Prodavac values (1, 'Pera', 'Peric', 'Ulica jablana 1');
+
+insert into Vrsta values (1, 'skolski pribor');
+
+insert into Proizvod values (1, 1, 'sveska', 75);
+
+insert into Prodaja values (1, 1, '25.8.2020.', 3);
