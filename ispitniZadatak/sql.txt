@@ -1,0 +1,43 @@
+drop table if exists Igrac;
+
+drop table if exists Mec;
+
+/*==============================================================*/
+/* Table: Igrac                                                 */
+/*==============================================================*/
+create table Igrac
+(
+   igracId              int not null auto_increment,
+   igracIme             varchar(30) not null,
+   igracPrezime         varchar(30) not null,
+   primary key (igracId)
+);
+
+/*==============================================================*/
+/* Table: Mec                                                   */
+/*==============================================================*/
+create table Mec
+(
+   mecId                int not null auto_increment,
+   igrac1_igracId       int not null,
+   igrac2_igracId       int not null,
+   datum                varchar(15) not null,
+   vreme                varchar(5) not null,
+   rezultat             varchar(10) not null,
+   primary key (mecId)
+);
+
+alter table Mec add constraint FK_Relationship_1 foreign key (igrac1_igracId)
+      references Igrac (igracId) on delete restrict on update restrict;
+
+alter table Mec add constraint FK_Relationship_2 foreign key (igrac2_igracId)
+      references Igrac (igracId) on delete restrict on update restrict;
+
+
+insert into Igrac values (1, 'Novak', 'Djokovic');
+insert into Igrac values (2, 'Roger', 'Federer');
+insert into Igrac values (3, 'Rafael', 'Nadal');
+insert into Igrac values (4, 'Stanislas', 'Wawrinka');
+insert into Igrac values (5, 'Roberto', 'Carballes Baena');
+insert into Igrac values (6, 'Juan Ignacio', 'Londero');
+insert into Igrac values (7, 'Alexander', 'Zverev');
